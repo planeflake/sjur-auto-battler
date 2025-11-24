@@ -2,9 +2,11 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 using Sjur.Units;
-using Sjur.Buildings;
 using Sjur.Themes;
 using Sjur.Resources;
+using BuildingData = Sjur.Buildings.BuildingData;
+using BuildingType = Sjur.Buildings.BuildingType;
+using UpgradeLevel = Sjur.Buildings.UpgradeLevel;
 
 namespace Sjur.Core.Editor
 {
@@ -55,7 +57,7 @@ namespace Sjur.Core.Editor
             units[0].unitType = UnitType.Melee;
             units[0].unitName = "Knight";
             units[0].description = "Heavy melee warrior with high health and armor";
-            units[0].spawnCosts.Add(new ResourceCost { resourceType = ResourceType.Gold, amount = 50 });
+            units[0].spawnCosts.Add(new Units.ResourceCost { resourceType = ResourceType.Gold, amount = 50 });
             units[0].maxHealth = 150;
             units[0].damage = 15;
             units[0].attackRange = 1.5f;
@@ -73,8 +75,8 @@ namespace Sjur.Core.Editor
             units[1].unitType = UnitType.Ranged;
             units[1].unitName = "Archer";
             units[1].description = "Long-range attacker with pierce damage";
-            units[1].spawnCosts.Add(new ResourceCost { resourceType = ResourceType.Gold, amount = 40 });
-            units[1].spawnCosts.Add(new ResourceCost { resourceType = ResourceType.Iron, amount = 10 });
+            units[1].spawnCosts.Add(new Units.ResourceCost { resourceType = ResourceType.Gold, amount = 40 });
+            units[1].spawnCosts.Add(new Units.ResourceCost { resourceType = ResourceType.Iron, amount = 10 });
             units[1].maxHealth = 80;
             units[1].damage = 12;
             units[1].attackRange = 8f;
@@ -92,8 +94,8 @@ namespace Sjur.Core.Editor
             units[2].unitType = UnitType.Armoured;
             units[2].unitName = "Defender";
             units[2].description = "Heavily armored tank with high defense";
-            units[2].spawnCosts.Add(new ResourceCost { resourceType = ResourceType.Gold, amount = 30 });
-            units[2].spawnCosts.Add(new ResourceCost { resourceType = ResourceType.Iron, amount = 40 });
+            units[2].spawnCosts.Add(new Units.ResourceCost { resourceType = ResourceType.Gold, amount = 30 });
+            units[2].spawnCosts.Add(new Units.ResourceCost { resourceType = ResourceType.Iron, amount = 40 });
             units[2].maxHealth = 250;
             units[2].damage = 8;
             units[2].attackRange = 1.5f;
@@ -111,8 +113,8 @@ namespace Sjur.Core.Editor
             units[3].unitType = UnitType.Mounted;
             units[3].unitName = "Cavalry";
             units[3].description = "Fast mounted unit with high damage and speed";
-            units[3].spawnCosts.Add(new ResourceCost { resourceType = ResourceType.Gold, amount = 60 });
-            units[3].spawnCosts.Add(new ResourceCost { resourceType = ResourceType.Iron, amount = 20 });
+            units[3].spawnCosts.Add(new Units.ResourceCost { resourceType = ResourceType.Gold, amount = 60 });
+            units[3].spawnCosts.Add(new Units.ResourceCost { resourceType = ResourceType.Iron, amount = 20 });
             units[3].maxHealth = 120;
             units[3].damage = 20;
             units[3].attackRange = 2f;
@@ -143,13 +145,13 @@ namespace Sjur.Core.Editor
             buildings[0].upgradeLevels.Add(new UpgradeLevel
             {
                 level = 2,
-                upgradeCosts = { new ResourceCost { resourceType = ResourceType.Gold, amount = 100 } },
+                upgradeCosts = { new Buildings.ResourceCost { resourceType = ResourceType.Gold, amount = 100 } },
                 generationRateMultiplier = 1.5f
             });
             buildings[0].upgradeLevels.Add(new UpgradeLevel
             {
                 level = 3,
-                upgradeCosts = { new ResourceCost { resourceType = ResourceType.Gold, amount = 200 } },
+                upgradeCosts = { new Buildings.ResourceCost { resourceType = ResourceType.Gold, amount = 200 } },
                 generationRateMultiplier = 2f
             });
             CreateAsset(buildings[0], "Assets/Data/Buildings/LoggingCamp_Data.asset");
@@ -159,14 +161,14 @@ namespace Sjur.Core.Editor
             buildings[1].buildingType = BuildingType.Mine;
             buildings[1].buildingName = "Mine";
             buildings[1].description = "Generates Iron over time. Can be upgraded for increased production.";
-            buildings[1].constructionCosts.Add(new ResourceCost { resourceType = ResourceType.Gold, amount = 100 });
+            buildings[1].constructionCosts.Add(new Buildings.ResourceCost { resourceType = ResourceType.Gold, amount = 100 });
             buildings[1].generatedResource = ResourceType.Iron;
             buildings[1].baseGenerationRate = 1.5f;
             buildings[1].maxLevel = 3;
             buildings[1].upgradeLevels.Add(new UpgradeLevel
             {
                 level = 2,
-                upgradeCosts = { new ResourceCost { resourceType = ResourceType.Gold, amount = 150 } },
+                upgradeCosts = { new Buildings.ResourceCost { resourceType = ResourceType.Gold, amount = 150 } },
                 generationRateMultiplier = 1.5f
             });
             buildings[1].upgradeLevels.Add(new UpgradeLevel
@@ -174,8 +176,8 @@ namespace Sjur.Core.Editor
                 level = 3,
                 upgradeCosts =
                 {
-                    new ResourceCost { resourceType = ResourceType.Gold, amount = 250 },
-                    new ResourceCost { resourceType = ResourceType.Iron, amount = 50 }
+                    new Buildings.ResourceCost { resourceType = ResourceType.Gold, amount = 250 },
+                    new Buildings.ResourceCost { resourceType = ResourceType.Iron, amount = 50 }
                 },
                 generationRateMultiplier = 2f
             });
@@ -186,8 +188,8 @@ namespace Sjur.Core.Editor
             buildings[2].buildingType = BuildingType.MageTower;
             buildings[2].buildingName = "Mage Tower";
             buildings[2].description = "Generates Arcane energy. Requires Gold and Iron to construct.";
-            buildings[2].constructionCosts.Add(new ResourceCost { resourceType = ResourceType.Gold, amount = 200 });
-            buildings[2].constructionCosts.Add(new ResourceCost { resourceType = ResourceType.Iron, amount = 100 });
+            buildings[2].constructionCosts.Add(new Buildings.ResourceCost { resourceType = ResourceType.Gold, amount = 200 });
+            buildings[2].constructionCosts.Add(new Buildings.ResourceCost { resourceType = ResourceType.Iron, amount = 100 });
             buildings[2].generatedResource = ResourceType.Arcane;
             buildings[2].baseGenerationRate = 1f;
             buildings[2].maxLevel = 3;
@@ -196,8 +198,8 @@ namespace Sjur.Core.Editor
                 level = 2,
                 upgradeCosts =
                 {
-                    new ResourceCost { resourceType = ResourceType.Gold, amount = 300 },
-                    new ResourceCost { resourceType = ResourceType.Iron, amount = 100 }
+                    new Buildings.ResourceCost { resourceType = ResourceType.Gold, amount = 300 },
+                    new Buildings.ResourceCost { resourceType = ResourceType.Iron, amount = 100 }
                 },
                 generationRateMultiplier = 1.5f
             });
@@ -206,8 +208,8 @@ namespace Sjur.Core.Editor
                 level = 3,
                 upgradeCosts =
                 {
-                    new ResourceCost { resourceType = ResourceType.Gold, amount = 500 },
-                    new ResourceCost { resourceType = ResourceType.Iron, amount = 200 }
+                    new Buildings.ResourceCost { resourceType = ResourceType.Gold, amount = 500 },
+                    new Buildings.ResourceCost { resourceType = ResourceType.Iron, amount = 200 }
                 },
                 generationRateMultiplier = 2f
             });
