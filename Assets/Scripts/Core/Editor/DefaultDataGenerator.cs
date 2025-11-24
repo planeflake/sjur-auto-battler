@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+using System.Collections.Generic;
 using Sjur.Units;
 using Sjur.Themes;
 using Sjur.Resources;
@@ -145,13 +146,19 @@ namespace Sjur.Core.Editor
             buildings[0].upgradeLevels.Add(new UpgradeLevel
             {
                 level = 2,
-                upgradeCosts = { new Buildings.ResourceCost { resourceType = ResourceType.Gold, amount = 100 } },
+                upgradeCosts = new List<Buildings.ResourceCost>
+                {
+                    new Buildings.ResourceCost { resourceType = ResourceType.Gold, amount = 100 }
+                },
                 generationRateMultiplier = 1.5f
             });
             buildings[0].upgradeLevels.Add(new UpgradeLevel
             {
                 level = 3,
-                upgradeCosts = { new Buildings.ResourceCost { resourceType = ResourceType.Gold, amount = 200 } },
+                upgradeCosts = new List<Buildings.ResourceCost>
+                {
+                    new Buildings.ResourceCost { resourceType = ResourceType.Gold, amount = 200 }
+                },
                 generationRateMultiplier = 2f
             });
             CreateAsset(buildings[0], "Assets/Data/Buildings/LoggingCamp_Data.asset");
@@ -168,13 +175,16 @@ namespace Sjur.Core.Editor
             buildings[1].upgradeLevels.Add(new UpgradeLevel
             {
                 level = 2,
-                upgradeCosts = { new Buildings.ResourceCost { resourceType = ResourceType.Gold, amount = 150 } },
+                upgradeCosts = new List<Buildings.ResourceCost>
+                {
+                    new Buildings.ResourceCost { resourceType = ResourceType.Gold, amount = 150 }
+                },
                 generationRateMultiplier = 1.5f
             });
             buildings[1].upgradeLevels.Add(new UpgradeLevel
             {
                 level = 3,
-                upgradeCosts =
+                upgradeCosts = new List<Buildings.ResourceCost>
                 {
                     new Buildings.ResourceCost { resourceType = ResourceType.Gold, amount = 250 },
                     new Buildings.ResourceCost { resourceType = ResourceType.Iron, amount = 50 }
@@ -196,7 +206,7 @@ namespace Sjur.Core.Editor
             buildings[2].upgradeLevels.Add(new UpgradeLevel
             {
                 level = 2,
-                upgradeCosts =
+                upgradeCosts = new List<Buildings.ResourceCost>
                 {
                     new Buildings.ResourceCost { resourceType = ResourceType.Gold, amount = 300 },
                     new Buildings.ResourceCost { resourceType = ResourceType.Iron, amount = 100 }
@@ -206,7 +216,7 @@ namespace Sjur.Core.Editor
             buildings[2].upgradeLevels.Add(new UpgradeLevel
             {
                 level = 3,
-                upgradeCosts =
+                upgradeCosts = new List<Buildings.ResourceCost>
                 {
                     new Buildings.ResourceCost { resourceType = ResourceType.Gold, amount = 500 },
                     new Buildings.ResourceCost { resourceType = ResourceType.Iron, amount = 200 }
